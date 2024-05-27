@@ -26,7 +26,7 @@ P_APP-335-MMN est une application conçue pour lire des livres électroniques au
     ```
 2. Ouvrez le projet avec Visual Studio 2022 :
     ```bash
-    cd P_APP-335-MMN
+    cd livreapp
     ```
 3. Restaurez les packages NuGet :
     ```bash
