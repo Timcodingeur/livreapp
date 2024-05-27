@@ -2,9 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="livreapp.ReaderPage">
-    <StackLayout>
-        <Button Text="Retour" Clicked="OnBackButtonClicked" />
-        <Label x:Name="TitleLabel" FontSize="24" FontAttributes="Bold" />
-        <WebView x:Name="ContentWebView" HeightRequest="1000" />
-    </StackLayout>
+    <VerticalStackLayout Spacing="10" Padding="10" BackgroundColor="White">
+        <Label x:Name="TitleLabel" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+        <Label x:Name="ChapterLabel" FontSize="18" HorizontalOptions="Center"/>
+
+        <Border Stroke="#385F71" BackgroundColor="#385F71" StrokeThickness="4" StrokeShape="RoundRectangle 30,30,30,30" Padding="16,8">
+            <WebView x:Name="ContentWebView" HeightRequest="400" VerticalOptions="FillAndExpand"/>
+        </Border>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
+            <Button Text="Précédent" Clicked="OnPreviousChapterClicked" BackgroundColor="#D3B88C" TextColor="Black"/>
+            <Button Text="Suivant" Clicked="OnNextChapterClicked" BackgroundColor="#D3B88C" TextColor="Black"/>
+        </StackLayout>
+
+        <Grid BackgroundColor="#937B56" VerticalOptions="End" x:Name="foot" HeightRequest="60">
+            <Image Source="book.png" HeightRequest="50" HorizontalOptions="Start" Aspect="AspectFit" SemanticProperties.Description="connection" Margin="10,0"/>
+            <Button Text="Stop" Clicked="OnBackButtonClicked" BackgroundColor="#D3B88C" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" Margin="10,0"/>
+        </Grid>
+    </VerticalStackLayout>
 </ContentPage>

@@ -255,7 +255,7 @@ namespace livreapp
                                 return;
                             }
 
-                            await OpenEpubFile(epubContent, book.Title, book.Author);
+                            await OpenEpubFile(epubContent, book.Title);
                         }
                         else
                         {
@@ -283,7 +283,7 @@ namespace livreapp
         }
 
         //permet d'ouvrir le livre
-        public async Task OpenEpubFile(byte[] epubContent, string title, string author)
+        public async Task OpenEpubFile(byte[] epubContent, string title)
         {
             //prend le contenu
             string filePath = IOPath.GetTempFileName();
@@ -291,7 +291,7 @@ namespace livreapp
 
             try
             {
-                List<string> contentList = new List<string>();
+                List<string> chapterList = new List<string>();
                 //utilise zip ariche pour ouvrir le livre
                 using (ZipArchive archive = ZipFile.OpenRead(filePath))
                 {
@@ -303,14 +303,13 @@ namespace livreapp
                             using (StreamReader reader = new StreamReader(entry.Open()))
                             {
                                 string content = await reader.ReadToEndAsync();
-                                contentList.Add(content);
+                                chapterList.Add(content);
                             }
                         }
                     }
                 }
                 //vas sur la reader page et affiche le contenu
-                string fullContent = string.Join("\n\n", contentList);
-                await Navigation.PushAsync(new ReaderPage(title, fullContent));
+                await Navigation.PushAsync(new ReaderPage(title, chapterList));
             }
             catch (Exception ex)
             {
